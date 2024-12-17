@@ -44,7 +44,7 @@
                 </div>
             @endif
             <div class="section mt-1 mb-5">
-                <form action="proseslogin" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">

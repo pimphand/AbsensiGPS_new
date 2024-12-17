@@ -76,7 +76,7 @@
                                                 </svg> Cetak</button>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="form-group">
                                             <button class="btn btn-success  w-100" name="exportExcel" type="submit"><svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
                                                     <path d="M19 16l3 3l-3 3"></path>
                                                 </svg> Export to Excel</button>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
                         </div>

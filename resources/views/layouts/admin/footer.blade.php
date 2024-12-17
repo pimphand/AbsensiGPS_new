@@ -5,8 +5,8 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        Copyright &copy; 2023
-                        <a href="." class="link-secondary">Dbuchin</a>.
+                        Copyright &copy; {{ date('Y') }}
+                        <a href="https://www.instagram.com/_tanahkubur/?hl=en" class="link-secondary">DMPT Dev</a>.
                         All rights reserved.
                     </li>
                 </ul>

@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 // Auth::guard('karyawan')->loginUsingId(1);
 Route::middleware('guest:karyawan')->group(function () {
-    Route::post('/proseslogin', [AuthController::class, 'proses_login']);
+    Route::post('/absen/login', [AuthController::class, 'proses_login']);
     Route::get('/absen/login', [AuthController::class, 'login'])->name('login');
 });
 

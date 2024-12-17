@@ -6,7 +6,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="/admin/dashboard">
-                <img src="{{ asset('assetsAdmin') }}/dist/img/logoAdmin.png" width="160" height="50" alt="Tabler">
+                <img src="{{ asset('img') }}/logomadiun.webp" width="70" height="70" alt="Tabler">
             </a>
         </h1>
         <div class="navbar-nav flex-row d-lg-none">

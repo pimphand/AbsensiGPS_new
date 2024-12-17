@@ -82,14 +82,14 @@
         <table style="width: 100%" border="1">
             <tr>
                 <td style="text-align: center">
-                    <img src="{{ asset('assetsAdmin') }}/dist/img/logoAdmin.png" width="200px" height="120px"
+                    <img src="{{ asset('img') }}/logomadiun.webp" width="200px" height="120px"
                         alt="">
                 </td>
                 <td style="text-align: center">
-                    <h3>PT MOBILOGIX TEKNOLOGI INDONESIA</h3>
+                    <h3>Desa Kebonsari</h3>
                     <h4>LAPORAN ABSENSI
                         PERIODE {{ strtoupper($namaBulan[$bulan]) }} {{ $tahun }}</h4>
-                    <h5>Jl.H.Amsir, Sunter Jaya , Tanjung Priok, Jakarta Utara, DKI Jakarta 14350</h5>
+                    <h5>Jl. Waringin Tunggal, Jumog, Kebonsari, Kec. Kebonsari, Kabupaten Madiun, Jawa Timur 63173 </h5>
                 </td>
             </tr>
         </table>
