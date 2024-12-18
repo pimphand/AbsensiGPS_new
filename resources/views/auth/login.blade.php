@@ -31,7 +31,7 @@
 
         <div class="login-form mt-1">
             <div class="section">
-                <img src="{{ asset('/img/logo.png') }}" alt="image" class="form-image">
+                <img src="{{ asset('/img/logomadiun.webp') }}" alt="image" class="form-image">
             </div>
 
             <div class="section mt-1">
