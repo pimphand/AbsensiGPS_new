@@ -15,14 +15,7 @@ class BannerController extends Controller
     public function index()
     {
         $data = Banner::paginate(10);
-        return view('dashboard.admin.banner.index',compact('data'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('dashboard.admin.banner.index', compact('data'));
     }
 
     /**
@@ -30,14 +23,14 @@ class BannerController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $validate = Validator::make($request->all(),[
+        $validate = Validator::make($request->all(), [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title' => 'required',
             'description' => 'nullable',
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['error' => $validate->errors()],422);
+            return response()->json(['error' => $validate->errors()], 422);
         }
 
         $image = Str::uuid() . '.' . $request->file('image')->getClientOriginalExtension();
@@ -51,7 +44,15 @@ class BannerController extends Controller
             'status' => $request->status,
         ]);
 
-        return response()->json(['success' => 'Banner Created Successfully'],200);
+        return response()->json(['success' => 'Banner berhasil disimpan'], 200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -75,7 +76,39 @@ class BannerController extends Controller
      */
     public function update(Request $request, Banner $banner)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required',
+            'description' => 'nullable',
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json(['error' => $validate->errors()], 422);
+        }
+
+        if ($request->hasFile('image')) {
+            $image = Str::uuid() . '.' . $request->file('image')->getClientOriginalExtension();
+            $folderPath = 'public/uploads/banner/';
+            $request->file('image')->storeAs($folderPath, $image);
+
+            // Delete old image
+            if (file_exists(storage_path('app/public/uploads/banner/' . $banner->image))) {
+                unlink(storage_path('app/public/uploads/banner/' . $banner->image));
+            }
+
+            $banner->update([
+                'image' => $image,
+                'title' => $request->title,
+                'description' => $request->description ?? null,
+            ]);
+        } else {
+            $banner->update([
+                'title' => $request->title,
+                'description' => $request->description ?? null,
+            ]);
+        }
+
+        return response()->json(['success' => 'Banner Updated Successfully'], 200);
     }
 
     /**
@@ -83,6 +116,8 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        //
+        $banner->delete();
+
+        return response()->json(['success' => 'Banner Deleted Successfully'], 200);
     }
 }

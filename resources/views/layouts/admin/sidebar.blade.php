@@ -112,6 +112,11 @@
                                     Banner
                                 </a>
 
+                                <a class="dropdown-item {{ request()->is(['admin/ppid']) ? 'active' : '' }}"
+                                   href="{{route('ppid.index')}}">
+                                    PPID
+                                </a>
+
                             </div>
                         </div>
                     </div>

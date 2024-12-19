@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\URL; // tambahkan baris ini
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+
+// tambahkan baris ini
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') == 'local') {
             URL::forceScheme('https');
         }
+        Paginator::useBootstrapFive();
     }
 }

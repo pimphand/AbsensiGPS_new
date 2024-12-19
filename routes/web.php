@@ -11,7 +11,6 @@ use App\Http\Controllers\JamController;
 use App\Http\Controllers\JamsByIdController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/ppid', [FrontendController::class, 'ppid'])->name('_ppid.index');
+Route::get('/ppid/downloadPpid/{id}', [FrontendController::class, 'downloadPpid'])->name('_ppid.downloadPpid');
 Route::get('/data', [FrontendController::class, 'data'])->name('data');
 
 // Auth::guard('karyawan')->loginUsingId(1);
@@ -107,4 +108,6 @@ Route::middleware('auth:user')->group(function () {
     Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.delete');
 
     Route::resource('admin/banner', \App\Http\Controllers\BannerController::class);
+    Route::resource('admin/ppid', \App\Http\Controllers\PpidController::class);
+
 });

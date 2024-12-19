@@ -6,7 +6,9 @@
                 <div class="col col-md-7 col-sm-12 col-12">
                     <div class="contact-intro">
                         <ul>
-                            <li><i class="fi ti-location-pin"></i> Jl. Waringin Tunggal, Jumog, Kebonsari, Kec. Kb. Sari, Kabupaten Madiun, Jawa Timur 63173 </li>
+                            <li><i class="fi ti-location-pin"></i> Jl. Waringin Tunggal, Jumog, Kebonsari, Kec. Kb.
+                                Sari, Kabupaten Madiun, Jawa Timur 63173
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -34,27 +36,36 @@
                     </div>
                     <div class="col-lg-2 col-md-4 col-4">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="/"><img src="{{asset('img/logomadiun.webp')}}" width="80" alt="logo"><span style="color: white">Desa Kebonsari</span></a>
+                            <a class="navbar-brand" href="/"><img src="{{asset('img/logomadiun.webp')}}" width="80"
+                                                                  alt="logo"><span
+                                    style="color: white">Desa Kebonsari</span></a>
                         </div>
                     </div>
-                    <div class="col-lg-10 col-md-1 col-1">
+                    <div class="col-lg-8 col-md-1 col-1">
                         <div id="navbar" class="collapse navbar-collapse navigation-holder">
                             <button class="menu-close"><i class="ti-close"></i></button>
                             <ul class="nav navbar-nav mb-2 mb-lg-0">
                                 <li class="menu-item-has-children">
-                                    <a class="active" href="/">Home</a>
+                                    <a class="{{ request()->is(['/']) ? 'active' : '' }}" href="/">Home</a>
                                 </li>
                                 <li><a href="/">Profil Desa</a></li>
                                 <li><a href="/">Infografis</a></li>
                                 <li><a href="/">Listing</a></li>
                                 <li><a href="/">IDM</a></li>
                                 <li><a href="/">Berita</a></li>
-                                <li><a href="/">PPID</a></li>
+                                <li><a class="{{ request()->is(['ppid']) ? 'active' : '' }}"
+                                       href="{{route('_ppid.index')}}">PPID</a></li>
                             </ul>
 
                         </div><!-- end of nav-collapse -->
                     </div>
-
+                    <div class="col-lg-1 col-md-4 col-4">
+                        <div class="header-right">
+                            <div class="close-form">
+                                <a class="theme-btn" href="{{route('login')}}">Absen</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div><!-- end of container -->
         </nav>
