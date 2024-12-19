@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/data', [FrontendController::class, 'data'])->name('data');
+
 // Auth::guard('karyawan')->loginUsingId(1);
 Route::middleware('guest:karyawan')->group(function () {
     Route::post('/absen/login', [AuthController::class, 'proses_login']);
@@ -103,4 +105,6 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/admin/users/', [UserController::class, 'store'])->name('admin.store');
     Route::put('/admin/users/update/{id}', [UserController::class, 'update'])->name('admin.update');
     Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.delete');
+
+    Route::resource('admin/banner', \App\Http\Controllers\BannerController::class);
 });

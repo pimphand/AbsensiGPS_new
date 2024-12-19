@@ -34,7 +34,6 @@ class KaryawanController extends Controller
 
     public function store(Request $request)
     {
-
         $nik = $request->nik;
         if ($request->hasFile('avatar')) {
             $avatar = $nik . '.' . $request->file('avatar')->getClientOriginalExtension();

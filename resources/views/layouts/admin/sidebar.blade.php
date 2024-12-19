@@ -107,6 +107,11 @@
                                     Data Departemen
                                 </a>
 
+                                <a class="dropdown-item {{ request()->is(['admin/banner']) ? 'active' : '' }}"
+                                   href="{{route('banner.index')}}">
+                                    Banner
+                                </a>
+
                             </div>
                         </div>
                     </div>

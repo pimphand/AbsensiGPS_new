@@ -6,7 +6,7 @@
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
                         Copyright &copy; {{ date('Y') }}
-                        <a href="https://www.instagram.com/_tanahkubur/?hl=en" class="link-secondary">DMPT Dev</a>.
+                        <a href="https://www.instagram.com/_tanahkubur/?hl=en" class="link-secondary">DMPTDev</a>.
                         All rights reserved.
                     </li>
                 </ul>
