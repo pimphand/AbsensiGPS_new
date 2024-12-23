@@ -21,7 +21,7 @@ class BannerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -118,6 +118,6 @@ class BannerController extends Controller
     {
         $banner->delete();
 
-        return response()->json(['success' => 'Banner Deleted Successfully'], 200);
+        return back()->with('success', 'Banner berhasil dihapus');
     }
 }

@@ -5,8 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="wpo-breadcumb-wrap">
-                        <h2>PPID</h2>
+                    <div class="wpo-breadcumb-wrap mt-5">
+                        <br>
+                        <h2 class="mt-5">PPID</h2>
                         <p style="color: white">Pejabat Pengelola Informasi dan Dokumentasi (PPID) adalah pejabat yang
                             bertanggung jawab di
                             bidang penyimpanan, pendokumentasian, penyediaan, dan/atau pelayanan informasi di badan
