@@ -53,6 +53,8 @@
                                 <li><a href="/">Listing</a></li>
                                 <li><a href="/">IDM</a></li>
                                 <li><a href="/">Berita</a></li>
+                                <li><a href="/">Layanan Mandiri</a></li>
+                                <li><a href="/umkm">UMKM</a></li>
                                 <li><a class="{{ request()->is(['ppid']) ? 'active' : '' }}"
                                        href="{{route('_ppid.index')}}">PPID</a></li>
                             </ul>
