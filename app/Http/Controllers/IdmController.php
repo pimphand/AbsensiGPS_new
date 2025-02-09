@@ -6,6 +6,8 @@ use App\Http\Requests\UpdateIdmRequest;
 use App\Models\ApbDes;
 use App\Models\Data;
 use App\Models\Idm;
+use App\Models\Katar;
+use App\Models\Pkk;
 use Illuminate\Http\Request;
 
 class IdmController extends Controller
@@ -17,7 +19,43 @@ class IdmController extends Controller
     {
         $data = Data::where('code', 'data-penduduk')->first();
         $apbds = ApbDes::all();
-        return view('dashboard.website.idm.index', compact('data', 'apbds'));
+        $pkk = Pkk::all()->sortBy(function ($item) {
+            $order = [
+                'Ketua TP PKK Desa' => 1,
+                'Wakil Ketua' => 2,
+                'Sekretaris' => 3,
+                'Bendahara' => 4,
+                'Ketua' => 5,
+                'Anggota' => 6
+            ];
+
+            return $order[$item->jabatan] ?? 999;
+        });
+
+        $jabatan_organisasi = [
+            'Ketua',
+            'Wakil Ketua',
+            'Sekretaris',
+            'Bendahara',
+            'Seksi Pendidikan dan Pelatihan',
+            'Seksi Kesejahteraan Sosial',
+            'Seksi Kelompok Usaha Bersama',
+            'Seksi Hubungan Masyarakat',
+            'Seksi Kerohanian',
+            'Seksi Lingkungan Hidup'
+        ];
+        $katar = Katar::orderByRaw("FIELD(jabatan, 'Ketua',
+            'Wakil Ketua',
+            'Sekretaris',
+            'Bendahara',
+            'Seksi Pendidikan dan Pelatihan',
+            'Seksi Kesejahteraan Sosial',
+            'Seksi Kelompok Usaha Bersama',
+            'Seksi Hubungan Masyarakat',
+            'Seksi Kerohanian',
+            'Seksi Lingkungan Hidup')")
+            ->get();
+        return view('dashboard.website.idm.index', compact('data', 'apbds', 'pkk', 'katar', 'jabatan_organisasi'));
     }
 
     /**

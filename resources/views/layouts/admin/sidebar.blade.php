@@ -298,12 +298,10 @@
                                    href="{{route('banner.index')}}">
                                     Banner
                                 </a>
-
                                 <a class="dropdown-item {{ request()->is(['admin/ppid']) ? 'active' : '' }}"
                                    href="{{route('ppid.index')}}">
                                     PPID
                                 </a>
-
                                 <a class="dropdown-item {{ request()->is(['admin/profile-desa']) ? 'active' : '' }}"
                                    href="{{route('profile-desa.index')}}">
                                     Profile Desa
@@ -311,9 +309,8 @@
 
                                 <a class="dropdown-item {{ request()->is(['admin/idm/*']) ? 'active' : '' }}"
                                    href="{{route('idm.index')}}">
-                                    IDM
+                                    Data Desa
                                 </a>
-
                             </div>
                         </div>
                     </div>

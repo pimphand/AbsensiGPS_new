@@ -241,6 +241,16 @@
 <script>
     $('.nama_desa').text($('#nama_desa').text())
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+            document.querySelector(".absen-mobile").style.display = "block";
+            document.querySelector("#absen").style.display = "none";
+        }
+    });
+</script>
 </body>
 
 </html>

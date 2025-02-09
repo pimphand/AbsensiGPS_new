@@ -1,58 +1,48 @@
 <div class="d-flex justify-content-between">
     <h4>APBDes</h4>
-    <button class="btn btn-info" id="add">Tambah Data</button>
+    <button class="btn btn-info" id="addPkk">Tambah Data</button>
 </div>
-<div class="card p-3 mt-3" id="card-form">
-    <form action="{{route('apbds.index')}}" method="post"
+<div class="card p-3 mt-3" id="pkk-form">
+    <form action="{{route('pkk.index')}}" method="post" id="form_pkk"
           enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="row">
                 <div class="mb-3 col-4">
-                    <label class="form-label">Tahun</label>
-                    <select class="form-control" name="tahun"
-                            id="tahun">
-                        <option value="" selected>Pilih Tahun</option>
-                        @php
-                            $tahunSekarang = date('Y');
-                            $tahunMulai = $tahunSekarang - ($tahunSekarang % 5);
-                        @endphp
-                        @for ($i = $tahunMulai; $i >= $tahunMulai - 5; $i -= 1)
-                            <option value='{{$i}}'>{{$i}}</option>
+                    @php
+                        $romawi = [1 => 'I', 2 => 'II', 3 => 'III', 4 => 'IV', 5 => 'V', 6 => 'VI'];
+                        $jabatan = ['Ketua TP PKK Desa', 'Wakil Ketua', 'Sekretaris', 'Bendahara', 'Ketua', 'Anggota'];
+                    @endphp
+                    <label class="form-label">Kelompok PKK</label>
+                    <select class="form-control" name="kelompok"
+                            id="kelompok">
+                        <option value="" selected>Pilih Kelompok PKK</option>
+                        @for ($k = 1; $k <= 6; $k++)
+                            <option value="{{ $k }}">Kelompok Kerja {{ $romawi[$k] }}</option>
                         @endfor
                     </select>
-
                 </div>
                 <div class="mb-3 col-4">
-                    <label class="form-label">Pendapatan</label>
-                    <input type="text" class="form-control" name="pendapatan"
-                           id="pendapatan"
-                           placeholder="Masukan Pendapatan APBDes">
+                    <label class="form-label">Nama</label>
+                    <input type="text" class="form-control" name="nama"
+                           id="nama" required
+                           placeholder="Masukan Nama Lengkap">
                 </div>
                 <div class="mb-3 col-4">
-                    <label class="form-label">Belanja</label>
-                    <input type="text" class="form-control" name="belanja"
-                           id="belanja"
-                           placeholder="Masukan Belanja APBDes">
+                    <label class="form-label">Jabatan</label>
+                    <select class="form-control" name="jabatan" required
+                            id="jabatan">
+                        <option value="" selected>Pilih Jabatan</option>
+                        @foreach($jabatan as $j)
+                            <option value="{{ $j }}">{{ $j }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="mb-3 col-4">
-                    <label class="form-label">Penerimaan</label>
-                    <input type="text" class="form-control" name="penerimaan"
-                           id="penerimaan"
-                           placeholder="Masukan Penerimaan APBDes">
-                </div>
-                <div class="mb-3 col-4">
-                    <label class="form-label">Pengeluaran</label>
-                    <input type="text" class="form-control" name="pengeluaran"
-                           id="pengeluaran"
-                           placeholder="Masukan Pengeluaran APBDes">
-                </div>
-                <div class="mb-3 col-4">
-                    <label class="form-label">Surplus/Defisit</label>
-                    <input type="text" class="form-control"
-                           name="surplus_defisit"
-                           id="surplus_defisit"
-                           placeholder="Masukan surplus_defisit APBDes">
+                <div class="mb-3 col-12">
+                    <label class="form-label">Alamat</label>
+                    <input type="text" class="form-control" name="alamat"
+                           id="alamat" required value="Ds. Kebonsari RT"
+                           placeholder="Masukan Alamat Lengkap">
                 </div>
             </div>
         </div>
@@ -66,40 +56,37 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Tahun</th>
-                    <th>Pendapatan</th>
-                    <th>Belanja</th>
-                    <th>Penerimaan</th>
-                    <th>Pengeluaran</th>
+                    <th>Nama</th>
+                    <th>Kelompok</th>
+                    <th>Jabatan</th>
+                    <th>Alamat</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($apbds as $apbd)
+                @foreach($pkk as $key => $pk)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$apbd->tahun}}</td>
-                        <td>{{$apbd->pendapatan}}</td>
-                        <td>{{$apbd->belanja}}</td>
-                        <td>{{$apbd->penerimaan}}</td>
-                        <td>{{$apbd->pengeluaran}}</td>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $pk->nama }}</td>
                         <td>
-                            <a href="javascript:void(0)"
-                               data-tahun="{{$apbd->tahun}}"
-                               data-pendapatan="{{$apbd->pendapatan}}"
-                               data-belanja="{{$apbd->belanja}}"
-                               data-penerimaan="{{$apbd->penerimaan}}"
-                               data-pengeluaran="{{$apbd->pengeluaran}}"
-                               data-surplus_defisit="{{$apbd->surplus_defisit}}"
-                               data-url="{{route('apbds.update', $apbd->id)}}"
-                               class="btn btn-warning edit">Edit</a>
-                            <form
-                                action="{{route('apbds.destroy', $apbd->id)}}"
-                                method="post" class="d-inline">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger">Hapus</button>
-                            </form>
+                            @if($pk->kelompok)
+                                {{ 'Kelompok Kerja ' . $romawi[$pk->kelompok] }}
+                            @endif
+                        </td>
+                        <td>{{ $pk->jabatan }}</td>
+                        <td>{{ $pk->alamat }}</td>
+                        <td>
+                            <button class="btn btn-warning editPkk"
+                                    data-id="{{ $pk->id }}"
+                                    data-kelompok="{{ $pk->kelompok }}"
+                                    data-nama="{{ $pk->nama }}"
+                                    data-jabatan="{{ $pk->jabatan }}"
+                                    data-action="{{ route('pkk.update', $pk->id) }}"
+                                    data-alamat="{{ $pk->alamat }}">Edit
+                            </button>
+                            <button class="btn btn-danger" id="deletePkk"
+                                    data-id="{{ $pk->id }}">Hapus
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -108,3 +95,38 @@
         </div>
     </div>
 </div>
+
+@push('js')
+    <script>
+        $('.editPkk').click(function (e) {
+            e.preventDefault()
+            let kelompok = $(this).data('kelompok')
+            let nama = $(this).data('nama')
+            let jabatan = $(this).data('jabatan')
+            let alamat = $(this).data('alamat')
+
+            $("#form_pkk").find('#kelompok').val(kelompok)
+            $("#form_pkk").find('#nama').val(nama)
+            $("#form_pkk").find('#jabatan').val(jabatan)
+            $("#form_pkk").find('#alamat').val(alamat)
+            $("#form_pkk").attr('action', $(this).data('action'))
+            $("#form_pkk").append('<input type="hidden" name="_method" value="PUT">')
+            $('#pkk-form').show()
+            //
+        })
+
+        $('#pkk-form').hide()
+        $('#addPkk').click(function (e) {
+            //reset form
+            $("#form_pkk").find('#kelompok').val('')
+            $("#form_pkk").find('#nama').val('')
+            $("#form_pkk").find('#jabatan').val('')
+            $("#form_pkk").find('#alamat').val('')
+            $("#form_pkk").find('input[name="_method"]').remove()
+            //action form
+            $("#form_pkk").attr('action', '{{ route('pkk.index') }}')
+            e.preventDefault()
+            $('#pkk-form').toggle()
+        })
+    </script>
+@endpush

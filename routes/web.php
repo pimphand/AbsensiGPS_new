@@ -123,6 +123,8 @@ Route::middleware('auth:user')->group(function () {
         Route::post('idm', [\App\Http\Controllers\IdmController::class, 'store']);
 
         Route::resource('apbds', \App\Http\Controllers\ApbDesController::class);
+        Route::resource('pkk', \App\Http\Controllers\PkkController::class);
+        Route::resource('katar', \App\Http\Controllers\KatarController::class);
 
     });
 });

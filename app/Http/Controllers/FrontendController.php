@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\ApbDes;
 use App\Models\Banner;
 use App\Models\Data;
+use App\Models\Katar;
+use App\Models\Pkk;
 use App\Models\Ppid;
 use Illuminate\Http\Request;
 
@@ -66,7 +68,12 @@ class FrontendController extends Controller
 
     public function pkk()
     {
-        return view('frontend.pkk');
+        $pkk = Pkk::orderByRaw("CASE WHEN kelompok IS NULL THEN 0 ELSE 1 END")
+            ->orderByRaw("CAST(kelompok AS UNSIGNED) ASC")
+            ->orderByRaw("FIELD(jabatan, 'Ketua TP PKK Desa', 'Wakil Ketua', 'Sekretaris', 'Bendahara', 'Ketua', 'Anggota')")
+            ->get();
+
+        return view('frontend.pkk', compact('pkk'));
     }
 
     public function lpmd()
@@ -76,6 +83,17 @@ class FrontendController extends Controller
 
     public function karangtaruna()
     {
-        return view('frontend.karangtaruna');
+        $katar = Katar::orderByRaw("FIELD(jabatan, 'Ketua',
+            'Wakil Ketua',
+            'Sekretaris',
+            'Bendahara',
+            'Seksi Pendidikan dan Pelatihan',
+            'Seksi Kesejahteraan Sosial',
+            'Seksi Kelompok Usaha Bersama',
+            'Seksi Hubungan Masyarakat',
+            'Seksi Kerohanian',
+            'Seksi Lingkungan Hidup')")
+            ->get();
+        return view('frontend.karangtaruna', compact('katar'));
     }
 }

@@ -16,4 +16,30 @@
             </div>
         </div>
     </div>
+
+    <div class="container text-center py-5">
+        <div class="row justify-content-center align-items-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NAMA</th>
+                    <th scope="col">JABATAN DALAM TIM</th>
+                    <th scope="col">ALAMAT</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($katar as $key => $pk)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $pk->nama }}</td>
+                        <td>{{ $pk->jabatan }}</td>
+                        <td>{{ $pk->alamat }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 @endsection

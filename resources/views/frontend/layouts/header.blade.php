@@ -88,13 +88,19 @@
                                 </li>
                                 <li><a href="/">Layanan Mandiri</a></li>
                                 <li><a href="/umkm">UMKM</a></li>
+                                <li><a href="/">Perpustakaan Digital</a></li>
+                                <li class="absen-mobile hidden md:block" style="display: none">
+                                    <a class="theme-btn"
+                                       href="{{route('login')}}">Absen
+                                    </a>
+                                </li>
                             </ul>
 
                         </div><!-- end of nav-collapse -->
                     </div>
                     <div class="col-lg-1 col-md-4 col-4">
                         <div class="header-right">
-                            <div class="close-form">
+                            <div class="close-form block md:hidden" id="absen">
                                 <a class="theme-btn" href="{{route('login')}}">Absen</a>
                             </div>
                         </div>
