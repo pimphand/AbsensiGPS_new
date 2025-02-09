@@ -1662,7 +1662,7 @@ a.ui-button:active,
         z-index: -1;
     }
 
-    .wpo-site-header #navbar > ul > li > a:hover:before,
+    /*.wpo-site-header #navbar > ul > li > a:hover:before,*/
     .wpo-site-header #navbar > ul > li > a.active:before {
         opacity: 1;
         visibility: visible;

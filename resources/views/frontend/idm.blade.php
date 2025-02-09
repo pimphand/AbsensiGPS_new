@@ -12,57 +12,77 @@
                 <div class="col-12">
                     <div class="wpo-breadcumb-wrap mt-5">
                         <br>
-                        <h2 class="mt-5">Profile Desa</h2>
+                        <h2 class="mt-5">Infografis <span class="nama_desa"></span></h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section class="wpo-blog-single-section section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-10 offset-lg-1 col-12">
-                    <div class="wpo-blog-content">
-                        <div class="post format-standard-image">
-                            <div class="entry-media text-center">
-                                @if($data)
-                                    <img style="max-width: 300px; max-height: 300px; height: auto; width: auto;"
-                                         src="{{asset('storage/'.$data['data']['logo'])}}" alt="">
-                                @else
-                                    <img src="{{asset('img/logomadiun.webp')}}" alt="">
-                                @endif
-                            </div>
+    <div class="container text-center py-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-7">
+                <ul class="nav nav-tabs nav-fill text-dark" id="infografisTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="penduduk-tab" data-bs-toggle="tab" href="#penduduk" role="tab">Penduduk</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="apbdes-tab" data-bs-toggle="tab" href="#apbdes" role="tab">APBDes</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="stunting-tab" data-bs-toggle="tab" href="#stunting"
+                           role="tab">Stunting</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="bansos-tab" data-bs-toggle="tab" href="#bansos" role="tab">Bansos</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="idm-tab" data-bs-toggle="tab" href="#idm" role="tab">IDM</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="sdgs-tab" data-bs-toggle="tab" href="#sdgs" role="tab">SDGs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="penduduk" role="tabpanel">
+                    <x-infografis.penduduk/>
+                </div>
+                <div class="tab-pane fade" id="apbdes" role="tabpanel">
 
-                            @if($data)
-                                <div class="text-justify" id="deskripsi">
-                                    {!! $data['data']['deskripsi'] !!}
-                                </div>
-                            @endif
-
-                            <div class="entry-media text-center mt-5">
-                                @if($data)
-                                    <h3>Struktur Organisasi Pemerintahan Desa</h3>
-                                    <img style="max-width: 800px; max-height: 800px; height: auto; width: auto;"
-                                         src="{{asset('storage/'.$data['data']['struktur_organisasi'])}}" alt="">
-                                @else
-                                    <img src="{{asset('img/logomadiun.webp')}}" alt="">
-                                @endif
-                            </div>
-                            <div class="entry-media text-center mt-5">
-                                @if($data)
-                                    <h3>Struktur Organisasi Badan Permusyawaratan Desa</h3>
-                                    <img style="max-width: 800px; max-height: 800px; height: auto; width: auto;"
-                                         src="{{asset('storage/'.$data['data']['struktur_permusyawaratan'])}}" alt="">
-                                @else
-                                    <img src="{{asset('img/logomadiun.webp')}}" alt="">
-                                @endif
-                            </div>
-                        </div>
-
+                    <div class="container" id="data-apbdes">
 
                     </div>
                 </div>
+                <div class="tab-pane fade" id="stunting" role="tabpanel">
+                    <h3>Segera Hadir</h3>
+                </div>
+                <div class="tab-pane fade" id="bansos" role="tabpanel">
+                    <h3>Segera Hadir</h3>
+                </div>
+                <div class="tab-pane fade" id="idm" role="tabpanel">
+                    <h3>Segera Hadir</h3>
+                </div>
+                <div class="tab-pane fade" id="sdgs" role="tabpanel">
+                    <h3>Segera Hadir</h3>
+                </div>
             </div>
-        </div> <!-- end container -->
-    </section>
+        </div>
+    </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '{{ route('apbd.data') }}',
+                type: 'GET',
+                success: function (response) {
+                    $('#data-apbdes').html(response);
+                }
+            });
+        });
+    </script>
+@endpush

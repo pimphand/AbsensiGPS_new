@@ -26,8 +26,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/ppid', [FrontendController::class, 'ppid'])->name('_ppid.index');
+Route::get('/idm', [FrontendController::class, 'idm'])->name('idm');
+Route::get('/apbd', [FrontendController::class, 'apbd'])->name('apbd.data');
 Route::get('/ppid/downloadPpid/{id}', [FrontendController::class, 'downloadPpid'])->name('_ppid.downloadPpid');
 Route::get('/data', [FrontendController::class, 'data'])->name('data');
+Route::get('/profile-desa', [FrontendController::class, 'profile'])->name('profile.index');
+Route::get('/pkk', [FrontendController::class, 'pkk'])->name('pkk');
+Route::get('/karang-taruna-wahana-merdeka', [FrontendController::class, 'karangtaruna'])->name('karangtaruna');
+Route::get('/lpmd', [FrontendController::class, 'lpmd'])->name('lpmd');
+
 
 // Auth::guard('karyawan')->loginUsingId(1);
 Route::middleware('guest:karyawan')->group(function () {
@@ -36,7 +43,6 @@ Route::middleware('guest:karyawan')->group(function () {
 });
 
 Route::middleware('auth:karyawan')->group(function () {
-
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/logout', [AuthController::class, 'logout']);
     // absensi
@@ -107,7 +113,16 @@ Route::middleware('auth:user')->group(function () {
     Route::put('/admin/users/update/{id}', [UserController::class, 'update'])->name('admin.update');
     Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.delete');
 
-    Route::resource('admin/banner', \App\Http\Controllers\BannerController::class);
-    Route::resource('admin/ppid', \App\Http\Controllers\PpidController::class);
+    Route::group(['prefix' => 'admin/website'], function () {
+        Route::resource('banner', \App\Http\Controllers\BannerController::class);
+        Route::resource('ppid', \App\Http\Controllers\PpidController::class);
+        Route::get('profile-desa', [\App\Http\Controllers\ProfileDesaController::class, 'index'])->name('profile-desa.index');
+        Route::post('profile-desa', [\App\Http\Controllers\ProfileDesaController::class, 'store']);
 
+        Route::get('idm', [\App\Http\Controllers\IdmController::class, 'index'])->name('idm.index');
+        Route::post('idm', [\App\Http\Controllers\IdmController::class, 'store']);
+
+        Route::resource('apbds', \App\Http\Controllers\ApbDesController::class);
+
+    });
 });

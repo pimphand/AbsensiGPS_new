@@ -5,10 +5,11 @@
             <div class="row">
                 <div class="col col-md-7 col-sm-12 col-12">
                     <div class="contact-intro">
+                        @php
+                            $profile = \App\Models\Data::where('code', 'profile-desa')->first();
+                        @endphp
                         <ul>
-                            <li><i class="fi ti-location-pin"></i> Jl. Waringin Tunggal, Jumog, Kebonsari, Kec. Kb.
-                                Sari, Kabupaten Madiun, Jawa Timur 63173
-                            </li>
+                            <li><i class="fi ti-location-pin"></i> {{$profile['data']['alamat']}}</li>
                         </ul>
                     </div>
                 </div>
@@ -36,9 +37,12 @@
                     </div>
                     <div class="col-lg-2 col-md-4 col-4">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="/"><img src="{{asset('img/logomadiun.webp')}}" width="80"
-                                                                  alt="logo"><span
-                                    style="color: white">Desa Kebonsari</span></a>
+                            <a class="navbar-brand" href="/">
+                                <img
+                                    src="{{$profile['data']['logo'] ?  asset('storage/'.$profile['data']['logo']): asset('img/logomadiun.webp')}}"
+                                    width="80" alt="logo">
+                                <span style="color: white" id="nama_desa">{{$profile['data']['nama']}}</span>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-1 col-1">
@@ -48,15 +52,42 @@
                                 <li class="menu-item-has-children">
                                     <a class="{{ request()->is(['/']) ? 'active' : '' }}" href="/">Home</a>
                                 </li>
-                                <li><a href="/">Profil Desa</a></li>
-                                <li><a href="/">Infografis</a></li>
-                                <li><a href="/">Listing</a></li>
-                                <li><a href="/">IDM</a></li>
-                                <li><a href="/">Berita</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#" class="{{ request()->is(['/profile-desa']) ? 'active' : '' }}">Profil
+                                        desa</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{route('profile.index')}}">{{__('Pemerintah desa')}}</a></li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">LKD</a>
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <a href="{{route('lpmd')}}">LPMD</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('karangtaruna')}}">
+                                                        KARANG TARUNA WAHANA
+                                                        MERDEKA
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('pkk')}}">
+                                                        PKK
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#" class="{{ request()->is(['/profile-desa']) ? 'active' : '' }}">About</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{route('_ppid.index')}}">{{__('PPID')}}</a></li>
+                                        <li><a href="{{route('idm')}}">{{__('IDM')}}</a></li>
+                                        <li><a href="{{route('profile.index')}}">{{__('Info')}}</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="/">Layanan Mandiri</a></li>
                                 <li><a href="/umkm">UMKM</a></li>
-                                <li><a class="{{ request()->is(['ppid']) ? 'active' : '' }}"
-                                       href="{{route('_ppid.index')}}">PPID</a></li>
                             </ul>
 
                         </div><!-- end of nav-collapse -->

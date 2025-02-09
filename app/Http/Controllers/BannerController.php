@@ -15,7 +15,7 @@ class BannerController extends Controller
     public function index()
     {
         $data = Banner::paginate(10);
-        return view('dashboard.admin.banner.index', compact('data'));
+        return view('dashboard.website.banner.index', compact('data'));
     }
 
     /**

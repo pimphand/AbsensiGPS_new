@@ -22,7 +22,30 @@
     <link href="{{asset('frontend/assets')}}/css/owl.transitions.css" rel="stylesheet">
     <link href="{{asset('frontend/assets')}}/css/jquery.fancybox.css" rel="stylesheet">
     <link href="{{asset('frontend/assets')}}/css/odometer-theme-default.css" rel="stylesheet">
-    <link href="{{asset('frontend/assets')}}/sass/style.css?t={{ now()->toString() }}" rel="stylesheet">
+    <link href="{{asset('frontend/assets')}}/sass/style.css?t={{ now() }}" rel="stylesheet">
+    <style>
+        li > a.active::before {
+            opacity: 0 !important;
+        }
+
+        .navbar-nav li a {
+            text-decoration: none; /* Menghilangkan underline default */
+            color: inherit; /* Menggunakan warna default dari tema */
+            transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+        }
+
+        .navbar-nav li a:hover {
+            color: #2979fe !important; /* Mengubah warna teks menjadi biru saat hover */
+            text-decoration: underline !important; /* Menambahkan underline saat hover */
+        }
+
+        .navbar-nav li a.active {
+            color: #2979fe !important;
+            font-weight: bold;
+            text-decoration: underline !important;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -57,18 +80,13 @@
                             <div class="logo widget-title" style="width: 210px !important;">
                                 <img src="{{asset('img/logomadiun.webp')}}" width="80" alt="blog"> Desa Kebonsari
                             </div>
-                            <p>Ac turpis egestas sed tempus. Nulla aliquet porttitor lacus luctus accumsan tortor
-                                posuere ac ut. Dignissim convallis aenean et tortor.</p>
-                            <br>
-                            <p>Ac turpis egestas sed tempus. Nulla aliquet porttitor lacus luctus accumsan tortor
-                                posuere ac ut.</p>
 
                         </div>
                     </div>
                     <div class="col col-xl-6 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="widget address-widget">
                             <div class="widget-title">
-                                <h3>Layanan</h3>
+                                {{--                                <h3>Layanan</h3>--}}
                             </div>
                             <ul>
                                 <li>
@@ -144,7 +162,7 @@
                                             </defs>
                                         </svg>
                                     </div>
-                                    hotely@bookfi.com
+
                                 </li>
                             </ul>
                             <div class="social-widget">
@@ -177,7 +195,7 @@
                     <div class="col col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="widget link-widget">
                             <div class="widget-title">
-                                <h3>Berita Populer:</h3>
+                                {{--                                <h3>Berita Populer:</h3>--}}
                             </div>
                             <ul>
 
@@ -220,6 +238,9 @@
 <script src="{{asset('frontend/assets')}}/js/script.js"></script>
 
 @stack('js')
+<script>
+    $('.nama_desa').text($('#nama_desa').text())
+</script>
 </body>
 
 </html>
