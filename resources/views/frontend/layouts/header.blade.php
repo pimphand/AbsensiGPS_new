@@ -1,26 +1,7 @@
-<!-- Start header -->
-<header id="header" class="header-style-s4">
-    <div class="topbar">
-        <div class="container">
-            <div class="row">
-                <div class="col col-md-7 col-sm-12 col-12">
-                    <div class="contact-intro">
-                        @php
-                            $profile = \App\Models\Data::where('code', 'profile-desa')->first();
-                        @endphp
-                        <ul>
-                            <li><i class="fi ti-location-pin"></i> {{$profile['data']['alamat']}}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col col-md-5 col-sm-12 col-12">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end topbar -->
-
+@php
+$profile = \App\Models\Data::where('code', 'profile-desa')->first();
+@endphp
+<header id="header">
     <div class="wpo-site-header wpo-site-header-s2">
         <nav class="navigation navbar navbar-expand-lg navbar-light">
             <div class="container">
