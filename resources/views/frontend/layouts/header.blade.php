@@ -1,8 +1,14 @@
 @php
 $profile = \App\Models\Data::where('code', 'profile-desa')->first();
 @endphp
+<style>
+    .wpo-site-header.wpo-site-header-s2 {
+    font-size: 10px !important;
+}
+
+</style>
 <header id="header">
-    <div class="wpo-site-header wpo-site-header-s2">
+    <div class="wpo-site-header wpo-site-header-s2" style="font-size: 10px important!;">
         <nav class="navigation navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <div class="row align-items-center">
@@ -22,7 +28,7 @@ $profile = \App\Models\Data::where('code', 'profile-desa')->first();
                                 <img
                                     src="{{$profile['data']['logo'] ?  asset('storage/'.$profile['data']['logo']): asset('img/logomadiun.webp')}}"
                                     width="80" alt="logo">
-                                <span style="color: white" id="nama_desa">{{$profile['data']['nama']}}</span>
+                                <span id="nama_desa">{{$profile['data']['nama']}}</span>
                             </a>
                         </div>
                     </div>

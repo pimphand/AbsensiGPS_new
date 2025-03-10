@@ -35,12 +35,12 @@
         }
 
         .navbar-nav li a:hover {
-            color:rgb(192, 206, 229) !important; /* Mengubah warna teks menjadi biru saat hover */
+            color: #2979fe !important; /* Mengubah warna teks menjadi biru saat hover */
             text-decoration: underline !important; /* Menambahkan underline saat hover */
         }
 
         .navbar-nav li a.active {
-            color: #fff !important;
+            color: #2979fe !important;
             font-weight: bold;
             text-decoration: underline !important;
         }
@@ -235,7 +235,7 @@
 <script src="{{asset('frontend/assets')}}/js/jquery.dlmenu.js"></script>
 <script src="{{asset('frontend/assets')}}/js/jquery-plugin-collection.js"></script>
 <!-- Custom script for this template -->
-<script src="{{asset('frontend/assets')}}/js/script.js?t={{ now() }}"></script>
+<script src="{{asset('frontend/assets')}}/js/script.js"></script>
 
 @stack('js')
 <script>

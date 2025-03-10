@@ -2417,7 +2417,7 @@ a.ui-button:active,
     color: #1069fe;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
     .wpo-site-header #navbar {
         /*** hover effect ***/
     }
@@ -2427,22 +2427,24 @@ a.ui-button:active,
     }
 
     .wpo-site-header #navbar > ul > li > a {
-        padding: 35px 20px;
+        padding: 20px 10px;
         display: block;
         color: #273958;
         position: relative;
         font-family: Sora;
         font-size: 14px;
         font-weight: 600;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
     }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1870px) {
     .wpo-site-header #navbar > ul > li > a {
-        padding: 35px 18px;
+        padding: 10px 10px;
     }
+
 }
+
 
 @media screen and (min-width: 992px) {
     .wpo-site-header #navbar > ul > li > a.active {
