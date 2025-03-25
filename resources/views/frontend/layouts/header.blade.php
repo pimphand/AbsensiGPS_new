@@ -1,11 +1,10 @@
 @php
-$profile = \App\Models\Data::where('code', 'profile-desa')->first();
+    $profile = \App\Models\Data::where('code', 'profile-desa')->first();
 @endphp
 <style>
     .wpo-site-header.wpo-site-header-s2 {
-    font-size: 10px !important;
-}
-
+        font-size: 10px !important;
+    }
 </style>
 <header id="header">
     <div class="wpo-site-header wpo-site-header-s2" style="font-size: 10px important!;">

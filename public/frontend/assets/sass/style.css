@@ -1638,7 +1638,7 @@ a.ui-button:active,
 @media screen and (min-width: 992px) {
     .wpo-site-header #navbar {
         /*** hover effect ***/
-        justify-content: center;
+        justify-content: end;
     }
 
     .wpo-site-header #navbar li {
@@ -1674,9 +1674,8 @@ a.ui-button:active,
     }
 
     .wpo-site-header #navbar > ul > li > .sub-menu > .menu-item-has-children > a:before {
-        font-family: "themify";
+        font-family: "themify", serif;
         content: "\e649";
-        font-size: 11px;
         font-size: 0.73333rem;
         position: absolute;
         right: 15px;
@@ -1811,7 +1810,7 @@ a.ui-button:active,
         float: none;
         position: relative;
         z-index: 99;
-        text-align: center;
+        text-align: end;
     }
 
     .wpo-site-header .navbar-right {
